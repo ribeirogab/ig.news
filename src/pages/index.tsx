@@ -1,23 +1,56 @@
+import { GetStaticProps } from 'next';
+
 import styles from '../styles/home.module.scss';
 
 import { SubscribeButton } from '../components/SubscribeButton';
 
-export default function Home() {
+interface HomeProps {
+  product: {
+    priceId: string;
+    amount: number;
+  };
+}
+
+export default function Home({ product }: HomeProps) {
   return (
     <main className={styles.contentContainer}>
       <section className={styles.hero}>
-        <span>👏 &nbsp;&nbsp;Hey, welcome</span>
+        <span>
+          <span className={styles.emoji}>👏</span>
+          Hey, welcome
+        </span>
         <h1>News about<br />the <span>React</span> world.</h1>
 
         <p>
-          Get access to all the publication 
-          <span>for $9.90 month</span>
+          Get access to all the publication<br/>
+          {product?.amount && (<span>for {product.amount} month</span>)}
         </p>
 
-        <SubscribeButton />
+        <SubscribeButton priceId={product.priceId} />
       </section>
 
       <img src="/images/avatar.svg" alt="Girl coding" />
     </main>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { stripe } = await import('../services/stripe');
+
+  const price = await stripe.prices.retrieve('price_1Ibo38EI4ePvucejHqR3SQmd')
+
+  const product = {
+    priceId: price.id,
+    amount: new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(price.unit_amount / 100),
+  }
+
+  return {
+    props: {
+      product,
+    },
+    revalidate: 60 * 60 * 24, // 24 hours
+  };
 }
