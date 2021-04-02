@@ -9,4 +9,8 @@ export default NextAuth({
       scope: 'read:user',
     })
   ],
+  pages: {
+    signIn: '/*',
+    signOut: '/*',
+  }
 });
