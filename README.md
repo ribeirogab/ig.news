@@ -1,1 +1,1 @@
-# ig.news
+# ig.news (just a study project)
