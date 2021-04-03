@@ -12,6 +12,10 @@ interface HomeProps {
 }
 
 export default function Home({ product }: HomeProps) {
+  if (!product) {
+    return <h1>Not found. 404</h1>
+  }
+
   return (
     <main className={styles.contentContainer}>
       <section className={styles.hero}>
