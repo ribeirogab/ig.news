@@ -19,13 +19,6 @@ export function ActiveLink({
     [asPath, rest, activeClassName]
   );
 
-  if (asPath !== '/posts') {
-    console.log('asPath:', asPath);
-    console.log('rest.href:', rest.href);
-    console.log('activeClassName:', activeClassName);
-    console.log('asPath === rest.href', asPath === rest.href);
-  }
-
   return (
     <Link {...rest}>
       {cloneElement(children, { className })}

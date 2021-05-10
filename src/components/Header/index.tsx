@@ -18,7 +18,7 @@ export function Header() {
             passHref
             activeClassName={styles.active}
           >
-            <a className={styles.active}>Home</a>
+            <a>Home</a>
           </ActiveLink>
 
           <ActiveLink
