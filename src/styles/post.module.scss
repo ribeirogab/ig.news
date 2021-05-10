@@ -42,3 +42,32 @@
     }
   }
 }
+
+.previewContent {
+  background: linear-gradient(var(--gray-100), transparent);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.continueReading {
+  padding: 2rem;
+  margin: 4rem 0 2rem;
+  border-radius: 100px;
+
+  background: var(--gray-850);
+  font-size: 1.25rem;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  transition: filter 0.2s;
+
+  span {
+    margin-left: 0.5rem;
+
+    color: var(--yellow-500);
+  }
+
+  &:hover {
+    filter: brightness(1.2);
+  }
+}
