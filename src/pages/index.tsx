@@ -1,8 +1,8 @@
 import { GetStaticProps } from 'next';
 
-import styles from '../styles/home.module.scss';
-
 import { SubscribeButton } from '../components/SubscribeButton';
+
+import styles from '../styles/home.module.scss';
 
 interface HomeProps {
   product: {
