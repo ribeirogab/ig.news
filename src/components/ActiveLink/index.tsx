@@ -1,4 +1,4 @@
-import { ReactElement, cloneElement } from 'react';
+import { ReactElement, cloneElement, useMemo } from 'react';
 import Link, { LinkProps } from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -14,10 +14,10 @@ export function ActiveLink({
 }: ActiveLinkProps) {
   const { asPath } = useRouter();
 
-  const className = asPath === rest.href ? activeClassName : '';
-
-  console.log('asPath:', asPath);
-  console.log('rest.href:', rest.href);
+  const className = useMemo(() => 
+    asPath === rest.href ? activeClassName : '', 
+    [asPath, rest, activeClassName]
+  );
 
   return (
     <Link {...rest}>
