@@ -19,6 +19,10 @@ export function ActiveLink({
     [asPath, rest, activeClassName]
   );
 
+  console.log('asPath:', asPath);
+  console.log('rest.href :', rest.href );
+  console.log('activeClassName:', activeClassName);
+
   return (
     <Link {...rest}>
       {cloneElement(children, { className })}
